@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Servicios Médicos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="manifest" href="/manifest.json">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">📋 Control de Servicios Médicos</div>
+            <div class="subtitle">Sistema de registro para filtrado por profesional</div>
+        </header>
+        <main>
+            <div class="upload-section">
+                <label>Archivo Crystal (Profesional):</label>
+                <input type="file" id="file1-input" accept=".xlsx,.xls">
+                <label>Archivo Query (Nombre Usuario Validación):</label>
+                <input type="file" id="file2-input" accept=".xlsx,.xls">
+                <button id="process-button" onclick="uploadFiles()">Procesar Archivos</button>
+            </div>
+            <div id="loading" style="display: none;">
+                <p>Procesando archivos...</p>
+            </div>
+            <div id="result" style="display: none;">
+                <div class="filter-section">
+                    <select id="professional-filter">
+                        <option value="">Seleccionar Profesional</option>
+                    </select>
+                    <select id="user-filter">
+                        <option value="">Seleccionar Profesional (Query)</option>
+                    </select>
+                    <button id="search-button">Buscar</button>
+                </div>
+                <div class="totals-group">
+                    <div class="card">
+                        <h3>Total Servicios Crystal</h3>
+                        <p class="count" id="total-services-crystal">0</p>
+                    </div>
+                    <div class="card">
+                        <h3>Total Servicios Query</h3>
+                        <p class="count" id="total-services-query">0</p>
+                    </div>
+                </div>
+                <div class="counts-group">
+                    <div class="card">
+                        <h3>Cantidad de Profesionales</h3>
+                        <p class="count" id="num-professionals">0</p>
+                    </div>
+                    <div class="card">
+                        <h3>Cantidad de Usuarios Validación</h3>
+                        <p class="count" id="num-users">0</p>
+                    </div>
+                </div>
+                <div id="global-data"></div>
+                <div id="person-data" style="display: none;"></div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 Control de Servicios Médicos</p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
